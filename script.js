@@ -1,35 +1,19 @@
-// let mascaraDecimal = {
-//   classeA: "255.0.0.0",
-//   classeB: "255.255.0.0",
-//   classeC: "255.255.255.0",
-// };
-// let mascaraBinario = {
-//   classeA: "11111111.00000000.00000000.00000000",
-//   classeB: "11111111.11111111.00000000.00000000",
-//   classeC: "11111111.11111111.11111111.00000000",
-// };
+let mascaraDecimal = {
+  classeA: "255.0.0.0",
+  classeB: "255.255.0.0",
+  classeC: "255.255.255.0",
+};
+let mascaraBinario = {
+  classeA: "11111111.00000000.00000000.00000000",
+  classeB: "11111111.11111111.00000000.00000000",
+  classeC: "11111111.11111111.11111111.00000000",
+};
 
-// let hosts = {
-//   classeA: (Math.pow(255, 3) - 2).toLocaleString("pt-BR"),
-//   classeB: (Math.pow(255, 2) - 2).toLocaleString("pt-BR"),
-//   classeC: (Math.pow(255, 1) - 2).toLocaleString("pt-BR"),
-// };
-
-// let entrada = 126;
-
-// if (entrada <= ip.classeA) {
-//   console.log(
-//     `Classe A. Máscara decimal: ${mascaraDecimal.classeA}. Máscara binária: ${mascaraBinario.classeA}. Total de IP's disponíveis: ${hosts.classeA}`
-//   );
-// } else if (entrada <= ip.classeB) {
-//   console.log(
-//     `Classe B. Máscara decimal: ${mascaraDecimal.classeB}. Máscara binária: ${mascaraBinario.classeB}. Total de IP's disponíveis: ${hosts.classeB}`
-//   );
-// } else if (entrada <= ip.classeC) {
-//   console.log(
-//     `Classe C. Máscara decimal: ${mascaraDecimal.classeC}. Máscara binária: ${mascaraBinario.classeC}. Total de IP's disponíveis: ${hosts.classeC}`
-//   );
-// }
+let hosts = {
+  classeA: (Math.pow(255, 3) - 2).toLocaleString("pt-BR"),
+  classeB: (Math.pow(255, 2) - 2).toLocaleString("pt-BR"),
+  classeC: (Math.pow(255, 1) - 2).toLocaleString("pt-BR"),
+};
 
 let ip = 110;
 
@@ -51,15 +35,21 @@ function testeIP(ip) {
 
   switch (true) {
     case classeA.includes(ip):
-      console.log("Classe A");
+      console.log(
+        `Classe A. Máscara decimal: ${mascaraDecimal.classeA}. Máscara binária: ${mascaraBinario.classeA}. Total de IP's disponíveis: ${hosts.classeA}`
+      );
       break;
 
     case classeB.includes(ip):
-      console.log("Classe B");
+      console.log(
+        `Classe B. Máscara decimal: ${mascaraDecimal.classeB}. Máscara binária: ${mascaraBinario.classeB}. Total de IP's disponíveis: ${hosts.classeB}`
+      );
       break;
 
     case classeC.includes(ip):
-      console.log("Classe C");
+      console.log(
+        `Classe C. Máscara decimal: ${mascaraDecimal.classeC}. Máscara binária: ${mascaraBinario.classeC}. Total de IP's disponíveis: ${hosts.classeC}`
+      );
       break;
 
     case ip > 223:
