@@ -1,6 +1,6 @@
-let cidr = 26;
+let cidr = 23;
 
-let primeiroOctetoIP = 175;
+let primeiroOctetoIP = 10;
 
 let ipv4 = {
   classes: {
