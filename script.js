@@ -15,9 +15,17 @@ let hosts = {
   classeC: (Math.pow(255, 1) - 2).toLocaleString("pt-BR"),
 };
 
-let ip = 110;
+let bitsIniciais = {
+  classeA: 8,
+  classeB: 16,
+  classeC: 24,
+};
 
-function testeIP(ip) {
+let cidr = 26;
+
+let ip = 198;
+
+function checkIP(ip) {
   let classeA = new Uint8ClampedArray(128);
   for (let i = 0; i < 128; i++) {
     classeA[i] = i;
@@ -38,19 +46,22 @@ function testeIP(ip) {
       console.log(
         `Classe A. Máscara decimal: ${mascaraDecimal.classeA}. Máscara binária: ${mascaraBinario.classeA}. Total de IP's disponíveis: ${hosts.classeA}`
       );
-      break;
+      return bitsIniciais.classeA;
+    // break;
 
     case classeB.includes(ip):
       console.log(
         `Classe B. Máscara decimal: ${mascaraDecimal.classeB}. Máscara binária: ${mascaraBinario.classeB}. Total de IP's disponíveis: ${hosts.classeB}`
       );
-      break;
+      return bitsIniciais.classeB;
+    // break;
 
     case classeC.includes(ip):
       console.log(
         `Classe C. Máscara decimal: ${mascaraDecimal.classeC}. Máscara binária: ${mascaraBinario.classeC}. Total de IP's disponíveis: ${hosts.classeC}`
       );
-      break;
+      return bitsIniciais.classeC;
+    // break;
 
     case ip > 223:
       console.log("Fora do Range");
@@ -61,4 +72,24 @@ function testeIP(ip) {
   }
 }
 
-testeIP(ip);
+checkIP(ip);
+
+function totalHosts(cidr) {
+  // 2^(32-CIDR)-2
+
+  let hosts = Math.pow(32 - cidr, 2) - 2;
+  console.log(hosts);
+  return hosts;
+}
+
+totalHosts(checkIP(ip));
+
+function totalSubRedes(cidr, bitsClasseIP) {
+  // 2^(cidr - bitsClasseIP)
+
+  let subRedes = Math.pow(cidr - bitsClasseIP, 2);
+  console.log(subRedes);
+  return subRedes;
+}
+
+totalSubRedes(cidr, checkIP(ip));
