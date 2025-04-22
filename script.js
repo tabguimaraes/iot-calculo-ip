@@ -1,8 +1,3 @@
-// let ip = {
-//   classeA: 127,
-//   classeB: 191,
-//   classeC: 223,
-// };
 // let mascaraDecimal = {
 //   classeA: "255.0.0.0",
 //   classeB: "255.255.0.0",
@@ -34,15 +29,11 @@
 //   console.log(
 //     `Classe C. Máscara decimal: ${mascaraDecimal.classeC}. Máscara binária: ${mascaraBinario.classeC}. Total de IP's disponíveis: ${hosts.classeC}`
 //   );
-// } else {
-//   console.log("Valor inválido");
 // }
 
+let ip = 110;
 
-
-let verificarClasseIP = 110;
-
-function testeIP(verificarClasseIP) {
+function testeIP(ip) {
   let classeA = new Uint8ClampedArray(128);
   for (let i = 0; i < 128; i++) {
     classeA[i] = i;
@@ -59,19 +50,19 @@ function testeIP(verificarClasseIP) {
   }
 
   switch (true) {
-    case classeA.includes(verificarClasseIP):
+    case classeA.includes(ip):
       console.log("Classe A");
       break;
 
-    case classeB.includes(verificarClasseIP):
+    case classeB.includes(ip):
       console.log("Classe B");
       break;
 
-    case classeC.includes(verificarClasseIP):
+    case classeC.includes(ip):
       console.log("Classe C");
       break;
 
-    case verificarClasseIP > 223:
+    case ip > 223:
       console.log("Fora do Range");
       break;
 
@@ -80,4 +71,4 @@ function testeIP(verificarClasseIP) {
   }
 }
 
-testeIP(verificarClasseIP);
+testeIP(ip);
