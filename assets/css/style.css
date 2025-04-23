@@ -1,23 +1,118 @@
-/* RESET DE ESTILOS */
-
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
   text-decoration: none;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 body {
   height: 100vh;
   width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  padding-bottom: 25px;
+}
+
+label {
+  padding-bottom: 10px;
+  font-size: large;
+  max-width: fit-content;
+}
+
+input {
+  padding: 10px;
+  height: 30px;
+  font-size: large;
 }
 
 .main-container {
-  max-width: 600px;
-  display: flex;
-  place-self: center;
-  align-self: center;
+  width: 600px;
+}
+
+.main-titulo {
+  text-align: center;
+}
+
+.container {
   border: 1px solid grey;
-  flex-direction: row;
-  flex-wrap: wrap;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 25px;
+}
+
+.form-calculadora {
+  display: grid;
+  grid-template-columns: 150px 150px 150px;
+  grid-template-areas:
+    "ip ip cidr"
+    "btn btn btn";
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.ip-field,
+.cidr-field {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+}
+
+.ip-field {
+  grid-area: ip;
+}
+
+.cidr-field {
+  grid-area: cidr;
+}
+
+#btn-calcular {
+  grid-area: btn;
+  height: 40px;
+  background-color: blue;
+  color: white;
+  font-size: large;
+  font-weight: 600;
+  border-radius: 10px;
+  border: none;
+}
+
+.form-resultado {
+  /* height: 150px; */
+  display: grid;
+  grid-template-columns: 150px 150px 150px;
+  grid-template-areas:
+    "address address  mask"
+    "subnets . hosts";
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.address-field,
+.mask-field,
+.subnets-field,
+.hosts-field {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+}
+
+.address-field {
+  grid-area: address;
+}
+
+.mask-field {
+  grid-area: mask;
+}
+
+.subnets-field {
+  grid-area: subnets;
+}
+
+.hosts-field {
+  grid-area: hosts;
 }

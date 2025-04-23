@@ -4,19 +4,44 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/css/style.css" />
-    <title>Calculadora de Sub-Redes</title>
+    <title>Calculadora de Subredes</title>
   </head>
   <body>
     <main class="main-container">
-      <h1 class="main-titulo">Calculadora de Sub-Redes</h1>
-      <div class="ip-container">
-        <form action=""></form>
-        <label for="ip">IP Address</label><br />
-        <input type="text" name="ip" id="ip" /><br />
-        <label for="cidr">CIDR</label><br />
-        <input type="text" name="cidr" id="cidr" />
+      <h1 class="main-titulo">Calculadora de Subredes</h1>
+      <div class="container" id="calculadora">
+        <form class="form-calculadora">
+          <div class="ip-field">
+            <label class="" for="ip">IP Address</label>
+            <input class="" type="text" name="ip" id="ip" />
+          </div>
+          <div class="cidr-field">
+            <label class="" for="cidr">CIDR</label>
+            <input class="" type="text" name="cidr" id="cidr" />
+          </div>
+          <button id="btn-calcular">CALCULAR</button>
+        </form>
       </div>
-      <div class="result-container"></div>
+      <div class="container">
+        <form class="form-resultado">
+          <div class="address-field">
+            <label class="" for="end-subrede">Endereço de Rede</label>
+            <input class="" type="text" name="end-subrede" id="end-subrede" />
+          </div>
+          <div class="mask-field">
+            <label class="" for="mask-subnet">Máscara</label>
+            <input class="" type="text" name="mask-subnet" id="mask-subnet" />
+          </div>
+          <div class="subnets-field">
+            <label class="" for="subnets">Total de Subredes</label>
+            <input class="" type="text" name="subnets" id="subnets" />
+          </div>
+          <div class="hosts-field">
+            <label class="" for="hosts">Total de Hosts</label>
+            <input class="" type="text" name="hosts" id="hosts" />
+          </div>
+        </form>
+      </div>
     </main>
   </body>
   <script src="./assets/js/script.js"></script>
