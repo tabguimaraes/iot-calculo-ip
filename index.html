@@ -10,35 +10,35 @@
     <main class="main-container">
       <h1 class="main-titulo">Calculadora de Subredes</h1>
       <div class="container" id="calculadora">
-        <form class="form-calculadora">
+        <form class="grid-container form-calculadora">
           <div class="ip-field">
-            <label class="" for="ip">IP Address</label>
-            <input class="" type="text" name="ip" id="ip" />
+            <label for="ip">IP Address</label>
+            <input type="text" name="ip" id="ip" />
           </div>
           <div class="cidr-field">
-            <label class="" for="cidr">CIDR</label>
-            <input class="" type="text" name="cidr" id="cidr" />
+            <label for="cidr">CIDR</label>
+            <input type="text" name="cidr" id="cidr" />
           </div>
           <button id="btn-calcular">CALCULAR</button>
         </form>
       </div>
-      <div class="container">
-        <form class="form-resultado">
+      <div class="container" id="resultado">
+        <form class="grid-container form-resultado">
           <div class="address-field">
-            <label class="" for="end-subrede">Endereço de Rede</label>
-            <input class="" type="text" name="end-subrede" id="end-subrede" />
+            <label for="end-subrede">Endereço de Rede</label>
+            <input type="text" name="end-subrede" id="end-subrede" />
           </div>
           <div class="mask-field">
-            <label class="" for="mask-subnet">Máscara</label>
-            <input class="" type="text" name="mask-subnet" id="mask-subnet" />
+            <label for="mask-subnet">Máscara</label>
+            <input type="text" name="mask-subnet" id="mask-subnet" />
           </div>
           <div class="subnets-field">
-            <label class="" for="subnets">Total de Subredes</label>
-            <input class="" type="text" name="subnets" id="subnets" />
+            <label for="subnets">Total de Subredes</label>
+            <input type="text" name="subnets" id="subnets" />
           </div>
           <div class="hosts-field">
-            <label class="" for="hosts">Total de Hosts</label>
-            <input class="" type="text" name="hosts" id="hosts" />
+            <label for="hosts">Total de Hosts</label>
+            <input type="text" name="hosts" id="hosts" />
           </div>
         </form>
       </div>

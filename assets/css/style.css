@@ -12,6 +12,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #e9ecef;
 }
 
 h1 {
@@ -21,17 +22,24 @@ h1 {
 label {
   padding-bottom: 10px;
   font-size: large;
-  max-width: fit-content;
 }
 
 input {
   padding: 10px;
   height: 30px;
   font-size: large;
+  max-width: 350px;
 }
 
 .main-container {
   width: 600px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 350px 150px;
+  justify-content: space-between;
+  gap: 5px;
 }
 
 .main-titulo {
@@ -43,16 +51,13 @@ input {
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 25px;
+  background-color: #f8f9fa;
 }
 
 .form-calculadora {
-  display: grid;
-  grid-template-columns: 150px 150px 150px;
   grid-template-areas:
-    "ip ip cidr"
-    "btn btn btn";
-  justify-content: space-between;
-  gap: 5px;
+    "ip cidr"
+    "btn btn";
 }
 
 .ip-field,
@@ -82,14 +87,9 @@ input {
 }
 
 .form-resultado {
-  /* height: 150px; */
-  display: grid;
-  grid-template-columns: 150px 150px 150px;
   grid-template-areas:
-    "address address  mask"
-    "subnets . hosts";
-  justify-content: space-between;
-  gap: 5px;
+    "address mask"
+    "subnets hosts";
 }
 
 .address-field,
