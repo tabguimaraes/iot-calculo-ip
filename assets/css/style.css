@@ -31,6 +31,10 @@ input {
   max-width: 350px;
 }
 
+input::placeholder {
+  font-size: medium;
+}
+
 .main-container {
   width: 600px;
 }
