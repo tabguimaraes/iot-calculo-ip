@@ -13,11 +13,11 @@
         <form class="grid-container form-calculadora">
           <div class="ip-field">
             <label for="ip">IP Address</label>
-            <input type="text" name="ip" id="ip" />
+            <input type="text" name="ip" id="ip" placeholder="Digite o endereço IP separado por '.'" />
           </div>
           <div class="cidr-field">
             <label for="cidr">CIDR</label>
-            <input type="text" name="cidr" id="cidr" />
+            <input type="number" name="cidr" id="cidr" value="8" min="8" max="32" />
           </div>
           <button id="btn-calcular">CALCULAR</button>
         </form>
