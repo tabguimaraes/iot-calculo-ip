@@ -178,3 +178,10 @@ p {
 #detalhes {
   height: 200px;
 }
+
+#pFooter {
+  position: relative;
+  bottom: -47vh;
+  left: -65vw;
+  padding-left: 20px;
+}

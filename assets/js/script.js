@@ -1,5 +1,5 @@
 function init() {
-  let cidr, primeiroOcteto, segundoOcteto, terceiroOcteto, quartoOcteto, pMascaraDecimal, hosts, subRedes, resultado;
+  let cidr = 8;
 
   const formCalculadora = {
     primeiroOcteto: document.querySelector("#primeiroOcteto"),
@@ -15,6 +15,22 @@ function init() {
     pHosts: document.querySelector("#pHosts"),
     pRedes: document.querySelector("#pRedes"),
   };
+
+  let {
+    primeiroOcteto,
+    segundoOcteto,
+    terceiroOcteto,
+    quartoOcteto,
+    hosts,
+    subRedes,
+    resultado,
+    pMascaraDecimal,
+    pIP,
+    pClasse,
+    pMascaraBinario,
+    pHosts,
+    pRedes,
+  } = formCalculadora;
 
   const ipv4 = {
     classes: {
@@ -208,20 +224,20 @@ function init() {
     console.log(subRedes);
 
     if (resultado !== "Fora do Range" && resultado !== "Classe não identificada") {
-      formCalculadora.pIP.innerHTML = `<span>IP:</span> ${primeiroOcteto}.${segundoOcteto}.${terceiroOcteto}.${quartoOcteto}.`;
-      formCalculadora.pClasse.innerHTML = `<span>Classe:</span> ${ipv4.classes[resultado]}.`;
-      formCalculadora.pMascaraDecimal.innerHTML = `<span>Máscara decimal:</span> ${ipv4.mascaraEmDecimal[resultado]}.`;
-      formCalculadora.pMascaraBinario.innerHTML = `<span>Máscara binária:</span> ${ipv4.mascaraEmBinario[resultado]}.`;
-      formCalculadora.pHosts.innerHTML = `<span>Número de hosts:</span> ${hosts}.`;
-      formCalculadora.pRedes.innerHTML = `<span>Número de subredes:</span> ${subRedes}.`;
+      pIP.innerHTML = `<span>IP:</span> ${primeiroOcteto}.${segundoOcteto}.${terceiroOcteto}.${quartoOcteto}`;
+      pClasse.innerHTML = `<span>Classe:</span> ${ipv4.classes[resultado]}`;
+      pMascaraDecimal.innerHTML = `<span>Máscara decimal:</span> ${ipv4.mascaraEmDecimal[resultado]}`;
+      pMascaraBinario.innerHTML = `<span>Máscara binária:</span> ${ipv4.mascaraEmBinario[resultado]}`;
+      pHosts.innerHTML = `<span>Número de hosts:</span> ${hosts}`;
+      pRedes.innerHTML = `<span>Número de subredes:</span> ${subRedes}`;
     } else {
-      formCalculadora.pIP.innerHTML += "";
-      formCalculadora.pClasse.innerHTML += "";
-      formCalculadora.pMascaraDecimal.innerHTML += "";
-      formCalculadora.pMascaraBinario.innerHTML += "";
-      formCalculadora.pHosts.innerHTML += "";
-      formCalculadora.pRedes.innerHTML += "";
-      formCalculadora.pIP.innerHTML = `${resultado}`;
+      pIP.innerHTML += "";
+      pClasse.innerHTML += "";
+      pMascaraDecimal.innerHTML += "";
+      pMascaraBinario.innerHTML += "";
+      pHosts.innerHTML += "";
+      pRedes.innerHTML += "";
+      pIP.innerHTML = `${resultado}`;
     }
   }
 }
