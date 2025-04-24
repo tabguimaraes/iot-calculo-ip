@@ -125,7 +125,6 @@ function exibirResultado() {
   const hosts = getCIDR();
 
   if (resultado !== "Fora do Range" && resultado !== "Classe não identificada") {
-    // console.log (`| O IP ${primeiroOctetoIP} pertence a Classe ${ipv4.classes[resultado]} e ela possui ${ipv4.bitsIniciais[resultado]} bits (por padrão).`)
     console.log(
       `| O IP ${primeiroOcteto} pertence a Classe ${ipv4.classes[resultado]} e ela possui ${ipv4.bitsIniciais[resultado]} bits (por padrão).`
     );
