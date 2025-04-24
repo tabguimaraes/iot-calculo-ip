@@ -28,11 +28,6 @@ input {
   padding: 10px;
   height: 30px;
   font-size: large;
-  /* max-width: 350px; */
-}
-
-input::placeholder {
-  /* font-size: small; */
 }
 
 .main-container {
@@ -90,6 +85,14 @@ input::placeholder {
   font-weight: 600;
   border-radius: 10px;
   border: none;
+}
+
+#btn-calcular:hover {
+  background-color: rgb(85, 85, 255);
+  transform: scale(1.05);
+}
+#btn-calcular:active {
+  transform: scale(0.95);
 }
 
 .form-resultado {
