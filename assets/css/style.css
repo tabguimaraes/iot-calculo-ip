@@ -107,8 +107,19 @@ input::placeholder {
   padding-bottom: 10px;
 }
 
+.address-field,
+.subnets-field {
+  max-width: 250px;
+}
+
 .address-field {
   grid-area: address;
+}
+
+.mask-field,
+.hosts-field {
+  max-width: 200px;
+  place-self: end;
 }
 
 .mask-field {
