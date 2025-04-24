@@ -11,7 +11,7 @@ const calculadora = {
   btn: document.querySelector("#btn-calcular"),
   pClasse: document.querySelector("#pClasse"),
   pMascara: document.querySelector("#pMascara"),
-  pHosts: document.querySelector("#pMascara"),
+  pHosts: document.querySelector("#pHosts"),
   pRedes: document.querySelector("#pRedes"),
 };
 
@@ -129,10 +129,10 @@ function exibirResultado() {
   const hosts = getCIDR();
 
   if (resultado !== "Fora do Range" && resultado !== "Classe não identificada") {
-    calculadora.pClasse.innerHTML = `O IP ${primeiroOcteto} pertence a Classe ${ipv4.classes[resultado]} e ela possui ${ipv4.bitsIniciais[resultado]} bits (por padrão).`;
-    calculadora.pMascara.innerHTML = `A máscara padrão em decimal é ${ipv4.mascaraEmDecimal[resultado]}. E em binário é ${ipv4.mascaraEmBinario[resultado]}`;
-    calculadora.pHosts.innerHTML = `A quantidade padrão de hosts para esta classe é de ${ipv4.hostsIniciais[resultado]} equipamentos.`;
-    calculadora.pRedes.innerHTML = `Com o barramento (CIDR) /${cidr} é possível criar até ${subRedes} subredes, com até ${hosts} equipamentos por subrede.`;
+    calculadora.pClasse.innerHTML = `O IP ${primeiroOcteto} Classe ${ipv4.classes[resultado]} (/${ipv4.bitsIniciais[resultado]} bits).`;
+    calculadora.pMascara.innerHTML = `A máscara: ${ipv4.mascaraEmDecimal[resultado]} (Binário: ${ipv4.mascaraEmBinario[resultado]})`;
+    calculadora.pHosts.innerHTML = `Número de hosts: ${ipv4.hostsIniciais[resultado]}.`;
+    calculadora.pRedes.innerHTML = `Número de subredes: ${subRedes} subredes.`;
     // console.log(`| A máscara padrão em decimal é ${ipv4.mascaraEmDecimal[resultado]}. E em binário é ${ipv4.mascaraEmBinario[resultado]}`);
     // console.log(`| A quantidade padrão de hosts para esta classe é de ${ipv4.hostsIniciais[resultado]} equipamentos.`);
     // console.log(`| Com o barramento (CIDR) /${cidr} é possível criar até ${subRedes} subredes, com até ${hosts} equipamentos por subrede.`);
