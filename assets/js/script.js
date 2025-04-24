@@ -1,11 +1,22 @@
 let cidr;
-let primeiroOctetoIP = 10;
+// let primeiroOctetoIP = 10;
+let primeiroOcteto, segundoOcteto, terceiroOcteto, quartoOcteto;
 
 const calculadora = {
-  ip: document.querySelector("#ip"),
+  primeiroOcteto: document.querySelector("#primeiroOcteto"),
+  segundoOcteto: document.querySelector("#segundoOcteto").value,
+  terceiroOcteto: document.querySelector("#terceiroOcteto").value,
+  quartoOcteto: document.querySelector("#quartoOcteto").value,
   cidr: document.querySelector("#cidr"),
   btn: document.querySelector("#btn-calcular"),
 };
+
+console.log();
+
+function getIP() {
+  primeiroOcteto = calculadora[0];
+  console.log(primeiroOcteto.value);
+}
 
 function getCIDR() {
   if (calculadora.cidr.value > 32) {
@@ -19,6 +30,7 @@ calculadora.btn.addEventListener("click", function (evento) {
   // Impedir o reload da página ao clicar em calcular
   evento.preventDefault();
   exibirResultado();
+  getIP();
 });
 
 let ipv4 = {
@@ -98,14 +110,15 @@ function calcularHosts(cidr) {
 }
 
 function exibirResultado() {
-  const resultado = identificarClasseDoIP(primeiroOctetoIP);
+  // const resultado = identificarClasseDoIP(primeiroOctetoIP);
   const subRedes = calcularSubRedes(ipv4.bitsIniciais[resultado]);
   const hosts = getCIDR();
 
   if (resultado !== "Fora do Range" && resultado !== "Classe não identificada") {
-    console.log(
-      `| O IP ${primeiroOctetoIP} pertence a Classe ${ipv4.classes[resultado]} e ela possui ${ipv4.bitsIniciais[resultado]} bits (por padrão).`
-    );
+    console
+      .log
+      // `| O IP ${primeiroOctetoIP} pertence a Classe ${ipv4.classes[resultado]} e ela possui ${ipv4.bitsIniciais[resultado]} bits (por padrão).`
+      ();
     console.log(`| A máscara padrão em decimal é ${ipv4.mascaraEmDecimal[resultado]}. E em binário é ${ipv4.mascaraEmBinario[resultado]}`);
     console.log(`| A quantidade padrão de hosts para esta classe é de ${ipv4.hostsIniciais[resultado]} equipamentos.`);
     console.log(`| Com o barramento (CIDR) /${cidr} é possível criar até ${subRedes} subredes, com até ${hosts} equipamentos por subrede.`);
