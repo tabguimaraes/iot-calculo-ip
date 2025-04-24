@@ -36,7 +36,7 @@ input::placeholder {
 }
 
 .main-container {
-  width: 600px;
+  width: 700px;
 }
 
 .grid-container {
@@ -119,4 +119,20 @@ input::placeholder {
 
 .hosts-field {
   grid-area: hosts;
+}
+
+.ip-input-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.ip-input-container p {
+  font-weight: 800;
+  font-size: large;
+}
+
+.ip-input {
+  width: 100px;
 }
