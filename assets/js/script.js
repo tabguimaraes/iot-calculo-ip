@@ -4,24 +4,33 @@ let primeiroOcteto, segundoOcteto, terceiroOcteto, quartoOcteto;
 
 const calculadora = {
   primeiroOcteto: document.querySelector("#primeiroOcteto"),
-  segundoOcteto: document.querySelector("#segundoOcteto").value,
-  terceiroOcteto: document.querySelector("#terceiroOcteto").value,
-  quartoOcteto: document.querySelector("#quartoOcteto").value,
+  segundoOcteto: document.querySelector("#segundoOcteto"),
+  terceiroOcteto: document.querySelector("#terceiroOcteto"),
+  quartoOcteto: document.querySelector("#quartoOcteto"),
   cidr: document.querySelector("#cidr"),
   btn: document.querySelector("#btn-calcular"),
 };
 
-console.log();
+// Event Listeners capturando a mudança do valor a cada mudança
+calculadora.primeiroOcteto.addEventListener("change", function (evento) {
+  primeiroOcteto = Number(evento.target.value);
+  console.log(primeiroOcteto);
+});
+
+calculadora.cidr.addEventListener("change", function (evento) {
+  cidr = Number(evento.target.value);
+  console.log(cidr);
+  getCIDR(cidr);
+});
 
 function getIP() {
-  primeiroOcteto = calculadora[0];
-  console.log(primeiroOcteto.value);
+  primeiroOcteto = calculadora.primeiroOcteto;
+  return primeiroOcteto;
 }
 
-function getCIDR() {
-  if (calculadora.cidr.value > 32) {
+function getCIDR(cidr) {
+  if (cidr > 32) {
   } else {
-    cidr = calculadora.cidr.value;
     calcularHosts(cidr);
   }
 }
@@ -111,14 +120,15 @@ function calcularHosts(cidr) {
 
 function exibirResultado() {
   // const resultado = identificarClasseDoIP(primeiroOctetoIP);
+  const resultado = identificarClasseDoIP(primeiroOcteto);
   const subRedes = calcularSubRedes(ipv4.bitsIniciais[resultado]);
   const hosts = getCIDR();
 
   if (resultado !== "Fora do Range" && resultado !== "Classe não identificada") {
-    console
-      .log
-      // `| O IP ${primeiroOctetoIP} pertence a Classe ${ipv4.classes[resultado]} e ela possui ${ipv4.bitsIniciais[resultado]} bits (por padrão).`
-      ();
+    // console.log (`| O IP ${primeiroOctetoIP} pertence a Classe ${ipv4.classes[resultado]} e ela possui ${ipv4.bitsIniciais[resultado]} bits (por padrão).`)
+    console.log(
+      `| O IP ${primeiroOcteto} pertence a Classe ${ipv4.classes[resultado]} e ela possui ${ipv4.bitsIniciais[resultado]} bits (por padrão).`
+    );
     console.log(`| A máscara padrão em decimal é ${ipv4.mascaraEmDecimal[resultado]}. E em binário é ${ipv4.mascaraEmBinario[resultado]}`);
     console.log(`| A quantidade padrão de hosts para esta classe é de ${ipv4.hostsIniciais[resultado]} equipamentos.`);
     console.log(`| Com o barramento (CIDR) /${cidr} é possível criar até ${subRedes} subredes, com até ${hosts} equipamentos por subrede.`);
