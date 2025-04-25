@@ -15,7 +15,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #282a36;
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
 }
 
 h1 {
@@ -43,6 +43,11 @@ span {
 p {
   display: flex;
   justify-content: space-between;
+}
+
+label,
+p {
+  color: #020024;
 }
 
 #pTitulo {
@@ -102,21 +107,22 @@ p {
 #btn-calcular {
   grid-area: btn;
   height: 40px;
-  background-color: blue;
+  background: linear-gradient(to right, #4e54c8, #8f94fb);
   color: white;
   font-size: large;
   font-weight: 600;
   border-radius: 10px;
   border: none;
   cursor: pointer;
+  transition: 0.2s;
 }
 
 #btn-calcular:hover {
-  background-color: rgb(85, 85, 255);
   transform: scale(1.05);
 }
 #btn-calcular:active {
   transform: scale(0.95);
+  background: linear-gradient(to right, #a8c0ff, #3f2b96);
 }
 
 .form-resultado {
@@ -184,4 +190,6 @@ p {
 #pFooter {
   padding-left: 20px;
   color: #e9ecef;
+  position: relative;
+  bottom: -2rem;
 }
