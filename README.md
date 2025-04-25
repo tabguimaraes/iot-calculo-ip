@@ -12,7 +12,7 @@ Acesse a calculadora online aqui:
 
 > https://tabguimaraes.github.io/iot-calculo-ip/
 
-![Calculadora de Subredes](image-1.png)
+![Calculadora de Subredes](readme.png)
 
 # Licença de Uso
 
