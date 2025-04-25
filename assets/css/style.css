@@ -19,25 +19,26 @@ body {
 }
 
 h1 {
-  padding-bottom: 25px;
+  padding-bottom: 20px;
   color: #e9ecef;
+  font-size: clamp(0.5rem, 2rem, 2.5rem);
 }
 
 label {
   padding-bottom: 10px;
-  font-size: large;
+  font-size: clamp(0.5rem, 1.125rem, 2rem);
   font-weight: 600;
 }
 
 input {
   padding: 10px;
-  height: 30px;
-  font-size: large;
+  height: 1.875rem;
+  font-size: clamp(0.5rem, 1.2rem, 1.5rem);
 }
 
 span {
   font-weight: 800;
-  font-size: large;
+  font-size: clamp(0.5rem, 1.2rem, 1.5rem);
 }
 
 p {
@@ -51,7 +52,7 @@ p {
 }
 
 #pTitulo {
-  font-size: large;
+  font-size: clamp(0.5rem, 1.2rem, 1.5rem);
   padding-bottom: 10px;
   font-weight: 600;
   text-align: center;
@@ -59,7 +60,8 @@ p {
 }
 
 .main-container {
-  max-width: 550px;
+  max-width: 800px;
+  min-width: 500px;
 }
 
 .grid-container {
@@ -77,7 +79,7 @@ p {
   border: 1px solid grey;
   border-radius: 10px;
   padding: 20px;
-  margin-bottom: 25px;
+  margin-bottom: 1.5rem;
   background-color: #f8f9fa;
 }
 
@@ -100,16 +102,16 @@ p {
 
 .cidr-field {
   grid-area: cidr;
-  width: 100px;
+  width: 6.25rem;
   place-self: end;
 }
 
 #btn-calcular {
   grid-area: btn;
-  height: 40px;
+  height: 2.5rem;
   background: linear-gradient(to right, #4e54c8, #8f94fb);
   color: white;
-  font-size: large;
+  font-size: clamp(0.5rem, 1.2rem, 1.5rem);
   font-weight: 600;
   border-radius: 10px;
   border: none;
@@ -119,10 +121,10 @@ p {
 
 #btn-calcular:hover {
   transform: scale(1.05);
+  background: linear-gradient(to right, #a8c0ff, #3f2b96);
 }
 #btn-calcular:active {
   transform: scale(0.95);
-  background: linear-gradient(to right, #a8c0ff, #3f2b96);
 }
 
 .form-resultado {
@@ -137,12 +139,12 @@ p {
 .hosts-field {
   display: flex;
   flex-direction: column;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
 }
 
 .address-field,
 .subnets-field {
-  max-width: 250px;
+  max-width: 15.625rem;
 }
 
 .address-field {
@@ -151,7 +153,7 @@ p {
 
 .mask-field,
 .hosts-field {
-  max-width: 200px;
+  max-width: 12.5rem;
   place-self: end;
 }
 
@@ -176,15 +178,15 @@ p {
 
 .ip-input-container p {
   font-weight: 800;
-  font-size: large;
+  font-size: clamp(0.5rem, 1.2rem, 1.5rem);
 }
 
 .ip-input {
-  width: 75px;
+  width: 4.6rem;
 }
 
 #detalhes {
-  height: 200px;
+  height: 12.5rem;
 }
 
 #pFooter {
