@@ -51,7 +51,6 @@ function init() {
         alert("O valor do octeto deve estar entre 0 e 255.");
         evento.target.value = ""; // limpa o campo
       } else {
-        // primeiroOcteto = valor;
         getCIDR(cidr);
         exibirResultado();
       }
@@ -81,7 +80,6 @@ function init() {
     if (ip >= 0 && ip <= 127) return "classeA";
     if (ip >= 128 && ip <= 191) return "classeB";
     if (ip >= 192 && ip <= 223) return "classeC";
-    // if (ip > 224) return "Classe não identificada";
     return "Fora do Range";
   }
 
