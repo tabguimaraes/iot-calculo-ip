@@ -8,7 +8,6 @@ function init() {
     terceiroOcteto: document.querySelector("#terceiroOcteto"),
     quartoOcteto: document.querySelector("#quartoOcteto"),
     cidr: document.querySelector("#cidr"),
-    btn: document.querySelector("#btn-calcular"),
     pIP: document.querySelector("#pIP"),
     pClasse: document.querySelector("#pClasse"),
     pMascaraDecimal: document.querySelector("#pMascaraDecimal"),
@@ -47,11 +46,12 @@ function init() {
   ipInput.forEach((element) => {
     element.addEventListener("change", function (evento) {
       let valor = Number(evento.target.value.trim());
+
       if (valor < 0 || valor > 255) {
         alert("O valor do octeto deve estar entre 0 e 255.");
         evento.target.value = ""; // limpa o campo
       } else {
-        primeiroOcteto = valor;
+        // primeiroOcteto = valor;
         getCIDR(cidr);
         exibirResultado();
       }
@@ -77,49 +77,12 @@ function init() {
     }
   }
 
-  formCalculadora.btn.addEventListener("click", function (evento) {
-    // Impedir o reload da página ao clicar em calcular
-
-    evento.preventDefault();
-    exibirResultado();
-  });
-
   function identificarClasseDoIP(ip) {
-    // Loop para identificar o intervalo de cada classe de IP. Classe A vai do 0 até o 127.
-    let classeA = new Uint8ClampedArray(128);
-    for (let i = 0; i < 128; i++) {
-      classeA[i] = i;
-    }
-
-    // Loop para identificar o intervalo de cada classe de IP. Classe B vai do 128 até o 191.
-    let classeB = new Uint8ClampedArray(192);
-    for (let i = 128; i < 192; i++) {
-      classeB[i] = i;
-    }
-
-    // Loop para identificar o intervalo de cada classe de IP. Classe C vai do 192 até o 223.
-    let classeC = new Uint8ClampedArray(224);
-    for (let i = 192; i < 224; i++) {
-      classeC[i] = i;
-    }
-
-    // Uso do switch para identificar a classe com base no número do primeiro octeto do IP. Ex: 192 retorna a string "classeC"
-    switch (true) {
-      case classeA.includes(ip):
-        return "classeA";
-
-      case classeB.includes(ip):
-        return "classeB";
-
-      case classeC.includes(ip):
-        return "classeC";
-
-      case ip > 223:
-        return "Fora do Range";
-
-      default:
-        return "Classe não identificada";
-    }
+    if (ip >= 0 && ip <= 127) return "classeA";
+    if (ip >= 128 && ip <= 191) return "classeB";
+    if (ip >= 192 && ip <= 223) return "classeC";
+    // if (ip > 224) return "Classe não identificada";
+    return "Fora do Range";
   }
 
   function calcularSubRedes(bitsClasseIP) {
@@ -163,6 +126,15 @@ function init() {
     return true;
   }
 
+  function limparResultados() {
+    pIP.innerHTML = "";
+    pClasse.innerHTML = "";
+    pMascaraDecimal.innerHTML = "";
+    pMascaraBinario.innerHTML = "";
+    pHosts.innerHTML = "";
+    pRedes.innerHTML = "";
+  }
+
   function exibirResultado() {
     const resultado = identificarClasseDoIP(primeiroOcteto);
     const mascara = calcularMascara(cidr);
@@ -170,7 +142,7 @@ function init() {
 
     validarOctetos();
 
-    if (resultado !== "Fora do Range" && resultado !== "Classe não identificada") {
+    if (resultado !== "Fora do Range") {
       pMascaraDecimal.innerHTML = `<span>Máscara decimal:</span> ${mascara.decimal}`;
       pMascaraBinario.innerHTML = `<span>Máscara binária:</span> ${mascara.binaria}`;
 
@@ -180,12 +152,7 @@ function init() {
       pHosts.innerHTML = `<span>Número de hosts:</span> ${hosts}`;
       pRedes.innerHTML = `<span>Número de subredes:</span> ${subRedes}`;
     } else {
-      pIP.innerHTML += "";
-      pClasse.innerHTML += "";
-      pMascaraDecimal.innerHTML += "";
-      pMascaraBinario.innerHTML += "";
-      pHosts.innerHTML += "";
-      pRedes.innerHTML += "";
+      limparResultados();
       pIP.innerHTML = `${resultado}`;
     }
   }
