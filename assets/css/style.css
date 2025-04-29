@@ -16,6 +16,7 @@ body {
   justify-content: center;
   align-items: center;
   background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  /* background: linear-gradient(135deg, #005ca9, #ed1c24); */
 }
 
 h1 {
