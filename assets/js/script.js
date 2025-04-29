@@ -16,21 +16,7 @@ function init() {
     pRedes: document.querySelector("#pRedes"),
   };
 
-  let {
-    primeiroOcteto,
-    segundoOcteto,
-    terceiroOcteto,
-    quartoOcteto,
-    hosts,
-    subRedes,
-    resultado,
-    pMascaraDecimal,
-    pIP,
-    pClasse,
-    pMascaraBinario,
-    pHosts,
-    pRedes,
-  } = formCalculadora;
+  let { pMascaraDecimal, pIP, pClasse, pMascaraBinario, pHosts, pRedes } = formCalculadora;
 
   const ipv4 = {
     classes: {
@@ -38,27 +24,23 @@ function init() {
       classeB: "B",
       classeC: "C",
     },
-    mascaraEmDecimal: {
-      classeA: "255.0.0.0",
-      classeB: "255.255.0.0",
-      classeC: "255.255.255.0",
-    },
-    mascaraEmBinario: {
-      classeA: "11111111.00000000.00000000.00000000",
-      classeB: "11111111.11111111.00000000.00000000",
-      classeC: "11111111.11111111.11111111.00000000",
-    },
-    hostsIniciais: {
-      classeA: (Math.pow(255, 3) - 2).toLocaleString("pt-BR"),
-      classeB: (Math.pow(255, 2) - 2).toLocaleString("pt-BR"),
-      classeC: (Math.pow(255, 1) - 1).toLocaleString("pt-BR"),
-    },
+
     bitsIniciais: {
       classeA: 8,
       classeB: 16,
       classeC: 24,
     },
   };
+
+  function calcularMascara(cidr) {
+    const binario = "1".repeat(cidr).padEnd(32, "0");
+    const octetosBinarios = binario.match(/.{1,8}/g); // divide em 4 blocos de 8 bits
+    const octetosDecimais = octetosBinarios.map((b) => parseInt(b, 2));
+    return {
+      binaria: octetosBinarios.join("."),
+      decimal: octetosDecimais.join("."),
+    };
+  }
 
   // Event Listeners capturando a mudança do valor a cada mudança
   formCalculadora.primeiroOcteto.addEventListener("change", function (evento) {
@@ -155,36 +137,41 @@ function init() {
     // Uso do switch para identificar a classe com base no número do primeiro octeto do IP. Ex: 192 retorna a string "classeC"
     switch (true) {
       case classeA.includes(ip):
-        return (resultado = "classeA");
+        return "classeA";
 
       case classeB.includes(ip):
-        return (resultado = "classeB");
+        return "classeB";
 
       case classeC.includes(ip):
-        return (resultado = "classeC");
+        return "classeC";
 
       case ip > 223:
-        return (resultado = "Fora do Range");
+        return "Fora do Range";
 
       default:
-        return (resultado = "Classe não identificada");
+        return "Classe não identificada";
     }
   }
 
   function calcularSubRedes(bitsClasseIP) {
     validarOctetos();
     // Fórmula de cálculo de subredes: 2^(cidr - bitsClasseIP) com retorno utilizando as casas decimais no padrão brasileiro.
-    return (subRedes = Math.pow(2, cidr - bitsClasseIP).toLocaleString("pt-BR"));
+    subRedes = Math.pow(2, cidr - bitsClasseIP);
+    if (subRedes < 0) {
+      return (subRedes = "- - -");
+    } else {
+      return (subRedes = subRedes.toLocaleString("pt-BR"));
+    }
   }
 
   function calcularHosts(cidr) {
     validarOctetos();
     // Fórmula de cálculo de hosts: 2^(32 - cidr) - 2 com retorno utilizando as casas decimais no padrão brasileiro.
     hosts = Math.pow(2, 32 - cidr) - 2;
-    if (hosts < 1) {
+    if (hosts < 0) {
       return (hosts = 0);
     }
-    return (hosts = (Math.pow(2, 32 - cidr) - 2).toLocaleString("pt-BR"));
+    return (hosts = hosts.toLocaleString("pt-BR"));
   }
 
   function validarOctetos() {
@@ -208,23 +195,19 @@ function init() {
   }
 
   function exibirResultado() {
+    const resultado = identificarClasseDoIP(primeiroOcteto);
+    const mascara = calcularMascara(cidr);
+    const subRedes = calcularSubRedes(ipv4.bitsIniciais[resultado]);
+
     validarOctetos();
-    identificarClasseDoIP(primeiroOcteto);
-    calcularSubRedes(ipv4.bitsIniciais[resultado]);
-
-    if (!hosts) {
-      hosts = "- - -";
-    }
-
-    if (subRedes === "NaN" || subRedes === undefined) {
-      subRedes = "- - -";
-    }
 
     if (resultado !== "Fora do Range" && resultado !== "Classe não identificada") {
+      pMascaraDecimal.innerHTML = `<span>Máscara decimal:</span> ${mascara.decimal}`;
+      pMascaraBinario.innerHTML = `<span>Máscara binária:</span> ${mascara.binaria}`;
+
       pIP.innerHTML = `<span>IP:</span> ${primeiroOcteto}.${segundoOcteto}.${terceiroOcteto}.${quartoOcteto}`;
       pClasse.innerHTML = `<span>Classe:</span> ${ipv4.classes[resultado]}`;
-      pMascaraDecimal.innerHTML = `<span>Máscara decimal:</span> ${ipv4.mascaraEmDecimal[resultado]}`;
-      pMascaraBinario.innerHTML = `<span>Máscara binária:</span> ${ipv4.mascaraEmBinario[resultado]}`;
+
       pHosts.innerHTML = `<span>Número de hosts:</span> ${hosts}`;
       pRedes.innerHTML = `<span>Número de subredes:</span> ${subRedes}`;
     } else {
