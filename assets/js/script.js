@@ -14,9 +14,10 @@ function init() {
     pMascaraBinario: document.querySelector("#pMascaraBinario"),
     pHosts: document.querySelector("#pHosts"),
     pRedes: document.querySelector("#pRedes"),
+    pTitulo: document.querySelector("#pTitulo"),
     ipInput: document.querySelectorAll(".ip-input"),
   };
-  let { ipInput, pMascaraDecimal, pIP, pClasse, pMascaraBinario, pHosts, pRedes } = formCalculadora;
+  let { ipInput, pMascaraDecimal, pIP, pClasse, pMascaraBinario, pHosts, pRedes, pTitulo } = formCalculadora;
 
   const ipv4 = {
     classes: {
@@ -80,6 +81,7 @@ function init() {
     if (ip >= 0 && ip <= 127) return "classeA";
     if (ip >= 128 && ip <= 191) return "classeB";
     if (ip >= 192 && ip <= 223) return "classeC";
+    resetParagrafoDeTitulo();
     return "Fora do Range";
   }
 
@@ -131,6 +133,10 @@ function init() {
     pMascaraBinario.innerHTML = "";
     pHosts.innerHTML = "";
     pRedes.innerHTML = "";
+  }
+
+  function resetParagrafoDeTitulo() {
+    pTitulo.innerHTML = "";
   }
 
   function exibirResultado() {
