@@ -1,5 +1,6 @@
 function init() {
   let cidr = 8;
+  let primeiroOcteto, segundoOcteto, terceiroOcteto, quartoOcteto;
 
   const formCalculadora = {
     primeiroOcteto: document.querySelector("#primeiroOcteto"),
@@ -14,9 +15,9 @@ function init() {
     pMascaraBinario: document.querySelector("#pMascaraBinario"),
     pHosts: document.querySelector("#pHosts"),
     pRedes: document.querySelector("#pRedes"),
+    ipInput: document.querySelectorAll(".ip-input"),
   };
-
-  let { pMascaraDecimal, pIP, pClasse, pMascaraBinario, pHosts, pRedes } = formCalculadora;
+  let { ipInput, pMascaraDecimal, pIP, pClasse, pMascaraBinario, pHosts, pRedes } = formCalculadora;
 
   const ipv4 = {
     classes: {
@@ -42,57 +43,25 @@ function init() {
     };
   }
 
-  // Event Listeners capturando a mudança do valor a cada mudança
-  formCalculadora.primeiroOcteto.addEventListener("change", function (evento) {
-    let valor = Number(evento.target.value.trim());
-    if (valor < 0 || valor > 255) {
-      alert("O valor do octeto deve estar entre 0 e 255.");
-      evento.target.value = ""; // limpa o campo
-    } else {
-      primeiroOcteto = valor;
-      getCIDR(cidr);
-      exibirResultado();
-    }
-  });
-
-  formCalculadora.segundoOcteto.addEventListener("change", function (evento) {
-    let valor = Number(evento.target.value.trim());
-    if (valor < 0 || valor > 255) {
-      alert("O valor do octeto deve estar entre 0 e 255.");
-      evento.target.value = ""; // limpa o campo
-    } else {
-      segundoOcteto = valor;
-      getCIDR(cidr);
-      exibirResultado();
-    }
-  });
-
-  formCalculadora.terceiroOcteto.addEventListener("change", function (evento) {
-    let valor = Number(evento.target.value.trim());
-    if (valor < 0 || valor > 255) {
-      alert("O valor do octeto deve estar entre 0 e 255.");
-      evento.target.value = ""; // limpa o campo
-    } else {
-      terceiroOcteto = valor;
-      getCIDR(cidr);
-      exibirResultado();
-    }
-  });
-
-  formCalculadora.quartoOcteto.addEventListener("change", function (evento) {
-    let valor = Number(evento.target.value.trim());
-    if (valor < 0 || valor > 255) {
-      alert("O valor do octeto deve estar entre 0 e 255.");
-      evento.target.value = ""; // limpa o campo
-    } else {
-      quartoOcteto = valor;
-      getCIDR(cidr);
-      exibirResultado();
-    }
+  // Event Listeners capturando a mudança do valor a cada mudança do elemento NodeList (array type) ipInput
+  ipInput.forEach((element) => {
+    element.addEventListener("change", function (evento) {
+      let valor = Number(evento.target.value.trim());
+      if (valor < 0 || valor > 255) {
+        alert("O valor do octeto deve estar entre 0 e 255.");
+        evento.target.value = ""; // limpa o campo
+      } else {
+        primeiroOcteto = valor;
+        getCIDR(cidr);
+        exibirResultado();
+      }
+    });
   });
 
   formCalculadora.cidr.addEventListener("change", function (evento) {
     if (Number(evento.target.value) > 32) {
+      alert("O valor do CIDR deve estar entre 8 e 32.");
+      Number((evento.target.value = 8));
     } else {
       cidr = Number(evento.target.value);
       getCIDR(cidr);
