@@ -122,7 +122,6 @@ function init() {
     if (cidr > 32) {
       window.alert("Digite um número entre 8 e 32 bits");
     } else {
-      console.log(cidr);
       calcularHosts(cidr);
     }
   }
@@ -220,8 +219,6 @@ function init() {
     if (subRedes === "NaN" || subRedes === undefined) {
       subRedes = "- - -";
     }
-
-    console.log(subRedes);
 
     if (resultado !== "Fora do Range" && resultado !== "Classe não identificada") {
       pIP.innerHTML = `<span>IP:</span> ${primeiroOcteto}.${segundoOcteto}.${terceiroOcteto}.${quartoOcteto}`;
