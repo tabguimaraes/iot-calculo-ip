@@ -46,6 +46,7 @@ function init() {
   // Event Listeners capturando a mudança do valor a cada mudança do elemento NodeList (array type) ipInput
   ipInput.forEach((element) => {
     element.addEventListener("change", function (evento) {
+      resetParagrafoDeTitulo();
       let valor = Number(evento.target.value.trim());
 
       if (valor < 0 || valor > 255) {
@@ -59,6 +60,8 @@ function init() {
   });
 
   formCalculadora.cidr.addEventListener("change", function (evento) {
+    resetParagrafoDeTitulo();
+
     if (Number(evento.target.value) > 32) {
       alert("O valor do CIDR deve estar entre 8 e 32.");
       Number((evento.target.value = 8));
@@ -81,7 +84,6 @@ function init() {
     if (ip >= 0 && ip <= 127) return "classeA";
     if (ip >= 128 && ip <= 191) return "classeB";
     if (ip >= 192 && ip <= 223) return "classeC";
-    resetParagrafoDeTitulo();
     return "Fora do Range";
   }
 
