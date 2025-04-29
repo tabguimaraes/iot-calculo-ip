@@ -8,16 +8,17 @@ function init() {
     terceiroOcteto: document.querySelector("#terceiroOcteto"),
     quartoOcteto: document.querySelector("#quartoOcteto"),
     cidr: document.querySelector("#cidr"),
-    pIP: document.querySelector("#pIP"),
-    pClasse: document.querySelector("#pClasse"),
-    pMascaraDecimal: document.querySelector("#pMascaraDecimal"),
-    pMascaraBinario: document.querySelector("#pMascaraBinario"),
-    pHosts: document.querySelector("#pHosts"),
-    pRedes: document.querySelector("#pRedes"),
-    pTitulo: document.querySelector("#pTitulo"),
+    paragrafoIP: document.querySelector("#paragrafoIP"),
+    paragrafoClasse: document.querySelector("#paragrafoClasse"),
+    paragrafoMascaraDecimal: document.querySelector("#paragrafoMascaraDecimal"),
+    paragrafoMascaraBinario: document.querySelector("#paragrafoMascaraBinario"),
+    paragrafoHosts: document.querySelector("#paragrafoHosts"),
+    paragrafoRedes: document.querySelector("#paragrafoRedes"),
+    paragrafoTitulo: document.querySelector("#paragrafoTitulo"),
     ipInput: document.querySelectorAll(".ip-input"),
   };
-  let { ipInput, pMascaraDecimal, pIP, pClasse, pMascaraBinario, pHosts, pRedes, pTitulo } = formCalculadora;
+  let { ipInput, paragrafoMascaraDecimal, paragrafoIP, paragrafoClasse, paragrafoMascaraBinario, paragrafoHosts, paragrafoRedes, paragrafoTitulo } =
+    formCalculadora;
 
   const ipv4 = {
     classes: {
@@ -129,16 +130,16 @@ function init() {
   }
 
   function limparResultados() {
-    pIP.innerHTML = "";
-    pClasse.innerHTML = "";
-    pMascaraDecimal.innerHTML = "";
-    pMascaraBinario.innerHTML = "";
-    pHosts.innerHTML = "";
-    pRedes.innerHTML = "";
+    paragrafoIP.innerHTML = "";
+    paragrafoClasse.innerHTML = "";
+    paragrafoMascaraDecimal.innerHTML = "";
+    paragrafoMascaraBinario.innerHTML = "";
+    paragrafoHosts.innerHTML = "";
+    paragrafoRedes.innerHTML = "";
   }
 
   function resetParagrafoDeTitulo() {
-    pTitulo.innerHTML = "";
+    paragrafoTitulo.innerHTML = "";
   }
 
   function exibirResultado() {
@@ -149,17 +150,17 @@ function init() {
     validarOctetos();
 
     if (resultado !== "Fora do Range") {
-      pMascaraDecimal.innerHTML = `<span>Máscara decimal:</span> ${mascara.decimal}`;
-      pMascaraBinario.innerHTML = `<span>Máscara binária:</span> ${mascara.binaria}`;
+      paragrafoMascaraDecimal.innerHTML = `<span>Máscara decimal:</span> ${mascara.decimal}`;
+      paragrafoMascaraBinario.innerHTML = `<span>Máscara binária:</span> ${mascara.binaria}`;
 
-      pIP.innerHTML = `<span>IP:</span> ${primeiroOcteto}.${segundoOcteto}.${terceiroOcteto}.${quartoOcteto}`;
-      pClasse.innerHTML = `<span>Classe:</span> ${ipv4.classes[resultado]}`;
+      paragrafoIP.innerHTML = `<span>IP:</span> ${primeiroOcteto}.${segundoOcteto}.${terceiroOcteto}.${quartoOcteto}`;
+      paragrafoClasse.innerHTML = `<span>Classe:</span> ${ipv4.classes[resultado]}`;
 
-      pHosts.innerHTML = `<span>Número de hosts:</span> ${hosts}`;
-      pRedes.innerHTML = `<span>Número de subredes:</span> ${subRedes}`;
+      paragrafoHosts.innerHTML = `<span>Número de hosts:</span> ${hosts}`;
+      paragrafoRedes.innerHTML = `<span>Número de subredes:</span> ${subRedes}`;
     } else {
       limparResultados();
-      pIP.innerHTML = `${resultado}`;
+      paragrafoIP.innerHTML = `${resultado}`;
     }
   }
 }
