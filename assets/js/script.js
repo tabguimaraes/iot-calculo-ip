@@ -157,8 +157,8 @@ function init() {
     validarOctetos();
     // Fórmula de cálculo de subredes: 2^(cidr - bitsClasseIP) com retorno utilizando as casas decimais no padrão brasileiro.
     subRedes = Math.pow(2, cidr - bitsClasseIP);
-    if (subRedes < 0) {
-      return (subRedes = "- - -");
+    if (subRedes < 1) {
+      return (subRedes = 0);
     } else {
       return (subRedes = subRedes.toLocaleString("pt-BR"));
     }
