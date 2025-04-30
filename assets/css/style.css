@@ -13,6 +13,7 @@ body {
   width: 100vw;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   justify-content: center;
   align-items: center;
   background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
@@ -62,6 +63,7 @@ p {
 }
 
 .main-container {
+  padding-top: 50px;
   width: 550px;
 }
 
@@ -170,8 +172,14 @@ p {
 }
 
 #paragrafoFooter {
-  padding-left: 20px;
+  height: 10vh;
   color: #e9ecef;
-  position: relative;
-  bottom: -10vh;
+  display: flex;
+  flex-grow: 1;
+  align-items: end;
+  padding-bottom: 20px;
+}
+
+#paragrafoFooter p {
+  color: #e9ecef;
 }
