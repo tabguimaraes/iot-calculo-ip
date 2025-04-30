@@ -13,7 +13,6 @@ body {
   width: 100vw;
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
   justify-content: center;
   align-items: center;
   background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
@@ -63,8 +62,11 @@ p {
 }
 
 .main-container {
-  padding-top: 50px;
   width: 550px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
 }
 
 .grid-container {
@@ -172,12 +174,11 @@ p {
 }
 
 #paragrafoFooter {
-  height: 10vh;
+  height: 6vh;
   color: #e9ecef;
   display: flex;
-  flex-grow: 1;
   align-items: end;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 
 #paragrafoFooter p {
