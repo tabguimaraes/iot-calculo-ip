@@ -47,6 +47,7 @@ function init() {
   // Event Listeners capturando a mudança do valor a cada mudança do elemento NodeList (array type) ipInput
   ipInput.forEach((element) => {
     element.addEventListener("change", function (evento) {
+      validarInputOctetos();
       resetParagrafoDeTitulo();
       let valor = Number(evento.target.value.trim());
 
@@ -54,26 +55,20 @@ function init() {
         alert("O valor do octeto deve estar entre 0 e 255.");
         evento.target.value = ""; // limpa o campo
       } else {
-        getCIDR(cidr);
+        calcularCIDR(cidr);
         exibirResultado();
       }
     });
   });
 
   formCalculadora.cidr.addEventListener("change", function (evento) {
+    cidr = Number(evento.target.value);
     resetParagrafoDeTitulo();
-
-    if (Number(evento.target.value) > 32) {
-      alert("O valor do CIDR deve estar entre 8 e 32.");
-      Number((evento.target.value = 8));
-    } else {
-      cidr = Number(evento.target.value);
-      getCIDR(cidr);
-      exibirResultado();
-    }
+    calcularCIDR(cidr);
+    exibirResultado();
   });
 
-  function getCIDR(cidr) {
+  function calcularCIDR(cidr) {
     if (cidr > 32) {
       window.alert("Digite um número entre 8 e 32 bits");
     } else {
@@ -82,14 +77,19 @@ function init() {
   }
 
   function identificarClasseDoIP(ip) {
-    if (ip >= 0 && ip <= 127) return "classeA";
-    if (ip >= 128 && ip <= 191) return "classeB";
-    if (ip >= 192 && ip <= 223) return "classeC";
+    if (ip >= 0 && ip <= 127) {
+      return "classeA";
+    }
+    if (ip >= 128 && ip <= 191) {
+      return "classeB";
+    }
+    if (ip >= 192 && ip <= 223) {
+      return "classeC";
+    }
     return "Fora do Range";
   }
 
   function calcularSubRedes(bitsClasseIP) {
-    validarOctetos();
     // Fórmula de cálculo de subredes: 2^(cidr - bitsClasseIP) com retorno utilizando as casas decimais no padrão brasileiro.
     subRedes = Math.pow(2, cidr - bitsClasseIP);
     if (subRedes < 1) {
@@ -100,7 +100,6 @@ function init() {
   }
 
   function calcularHosts(cidr) {
-    validarOctetos();
     // Fórmula de cálculo de hosts: 2^(32 - cidr) - 2 com retorno utilizando as casas decimais no padrão brasileiro.
     hosts = Math.pow(2, 32 - cidr) - 2;
     if (hosts < 0) {
@@ -109,28 +108,17 @@ function init() {
     return (hosts = hosts.toLocaleString("pt-BR"));
   }
 
-  function validarOctetos() {
+  function validarInputOctetos() {
     primeiroOcteto = Number(formCalculadora.primeiroOcteto.value) || 0;
     segundoOcteto = Number(formCalculadora.segundoOcteto.value) || 0;
     terceiroOcteto = Number(formCalculadora.terceiroOcteto.value) || 0;
     quartoOcteto = Number(formCalculadora.quartoOcteto.value) || 0;
-
-    const octetos = [primeiroOcteto, segundoOcteto, terceiroOcteto, quartoOcteto];
-    const campos = [formCalculadora.primeiroOcteto, formCalculadora.segundoOcteto, formCalculadora.terceiroOcteto, formCalculadora.quartoOcteto];
-
-    for (let i = 0; i < octetos.length; i++) {
-      if (octetos[i] < 0 || octetos[i] > 255) {
-        alert(`O octeto ${i + 1} deve estar entre 0 e 255.`);
-        campos[i].focus();
-        return false;
-      }
-    }
-
-    return true;
   }
 
   function limparResultados() {
     paragrafoIP.innerHTML = "";
+    paragrafoIP.classList.remove("ipRange");
+
     paragrafoClasse.innerHTML = "";
     paragrafoMascaraDecimal.innerHTML = "";
     paragrafoMascaraBinario.innerHTML = "";
@@ -147,12 +135,11 @@ function init() {
     const mascara = calcularMascara(cidr);
     const subRedes = calcularSubRedes(ipv4.bitsIniciais[resultado]);
 
-    validarOctetos();
-
     if (resultado !== "Fora do Range") {
       paragrafoMascaraDecimal.innerHTML = `<span>Máscara decimal:</span> ${mascara.decimal}`;
       paragrafoMascaraBinario.innerHTML = `<span>Máscara binária:</span> ${mascara.binaria}`;
 
+      paragrafoIP.classList.remove("ipRange");
       paragrafoIP.innerHTML = `<span>IP:</span> ${primeiroOcteto}.${segundoOcteto}.${terceiroOcteto}.${quartoOcteto}`;
       paragrafoClasse.innerHTML = `<span>Classe:</span> ${ipv4.classes[resultado]}`;
 
@@ -161,6 +148,7 @@ function init() {
     } else {
       limparResultados();
       paragrafoIP.innerHTML = `${resultado}`;
+      paragrafoIP.classList.add("ipRange");
     }
   }
 }
