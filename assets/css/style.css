@@ -185,8 +185,3 @@ p {
   color: #e9ecef;
 }
 
-.ipRange {
-  font-size: clamp(0.5vw, 2vw, 2.5vw);
-  font-weight: 600;
-  justify-content: center;
-}

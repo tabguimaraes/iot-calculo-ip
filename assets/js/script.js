@@ -117,8 +117,6 @@ function init() {
 
   function limparResultados() {
     paragrafoIP.innerHTML = "";
-    paragrafoIP.classList.remove("ipRange");
-
     paragrafoClasse.innerHTML = "";
     paragrafoMascaraDecimal.innerHTML = "";
     paragrafoMascaraBinario.innerHTML = "";
@@ -139,7 +137,6 @@ function init() {
       paragrafoMascaraDecimal.innerHTML = `<span>Máscara decimal:</span> ${mascara.decimal}`;
       paragrafoMascaraBinario.innerHTML = `<span>Máscara binária:</span> ${mascara.binaria}`;
 
-      paragrafoIP.classList.remove("ipRange");
       paragrafoIP.innerHTML = `<span>IP:</span> ${primeiroOcteto}.${segundoOcteto}.${terceiroOcteto}.${quartoOcteto}`;
       paragrafoClasse.innerHTML = `<span>Classe:</span> ${ipv4.classes[resultado]}`;
 
@@ -147,10 +144,8 @@ function init() {
       paragrafoRedes.innerHTML = `<span>Número de subredes:</span> ${subRedes}`;
     } else {
       limparResultados();
-      paragrafoIP.innerHTML = `${resultado}`;
-      paragrafoIP.classList.add("ipRange");
+      paragrafoTitulo.innerHTML = `${resultado}`;
     }
   }
 }
-
 init();
