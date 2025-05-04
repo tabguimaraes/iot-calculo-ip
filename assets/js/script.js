@@ -17,7 +17,7 @@ function init() {
     paragrafoTitulo: document.querySelector("#paragrafoTitulo"),
     ipInput: document.querySelectorAll(".ip-input"),
   };
-  let { ipInput, paragrafoMascaraDecimal, paragrafoIP, paragrafoClasse, paragrafoMascaraBinario, paragrafoHosts, paragrafoRedes, paragrafoTitulo } =
+  const { ipInput, paragrafoMascaraDecimal, paragrafoIP, paragrafoClasse, paragrafoMascaraBinario, paragrafoHosts, paragrafoRedes, paragrafoTitulo } =
     formCalculadora;
 
   const ipv4 = {
@@ -109,10 +109,10 @@ function init() {
   }
 
   function validarInputOctetos() {
-    primeiroOcteto = Number(formCalculadora.primeiroOcteto.value) || 0;
-    segundoOcteto = Number(formCalculadora.segundoOcteto.value) || 0;
-    terceiroOcteto = Number(formCalculadora.terceiroOcteto.value) || 0;
-    quartoOcteto = Number(formCalculadora.quartoOcteto.value) || 0;
+    primeiroOcteto = formCalculadora.primeiroOcteto.valueAsNumber || 0;
+    segundoOcteto = formCalculadora.segundoOcteto.valueAsNumber || 0;
+    terceiroOcteto = formCalculadora.terceiroOcteto.valueAsNumber || 0;
+    quartoOcteto = formCalculadora.quartoOcteto.valueAsNumber || 0;
   }
 
   function limparResultados() {
