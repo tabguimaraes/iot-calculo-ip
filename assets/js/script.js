@@ -15,10 +15,24 @@ function init() {
     paragrafoHosts: document.querySelector("#paragrafoHosts"),
     paragrafoRedes: document.querySelector("#paragrafoRedes"),
     paragrafoTitulo: document.querySelector("#paragrafoTitulo"),
+    primeiroIP: document.querySelector(".primeiroIP"),
+    ultimoIP: document.querySelector(".ultimoIP"),
     ipInput: document.querySelectorAll(".ip-input"),
+    displayToggle: document.querySelectorAll(".displayToggle"),
   };
-  const { ipInput, paragrafoMascaraDecimal, paragrafoIP, paragrafoClasse, paragrafoMascaraBinario, paragrafoHosts, paragrafoRedes, paragrafoTitulo } =
-    formCalculadora;
+  const {
+    ipInput,
+    paragrafoMascaraDecimal,
+    paragrafoIP,
+    paragrafoClasse,
+    paragrafoMascaraBinario,
+    paragrafoHosts,
+    paragrafoRedes,
+    paragrafoTitulo,
+    primeiroIP,
+    ultimoIP,
+    displayToggle,
+  } = formCalculadora;
 
   const ipv4 = {
     classes: {
@@ -124,12 +138,9 @@ function init() {
   }
 
   function limparResultados() {
-    paragrafoIP.innerHTML = "";
-    paragrafoClasse.innerHTML = "";
-    paragrafoMascaraDecimal.innerHTML = "";
-    paragrafoMascaraBinario.innerHTML = "";
-    paragrafoHosts.innerHTML = "";
-    paragrafoRedes.innerHTML = "";
+    displayToggle.forEach((item) => {
+      item.classList.add("displayToggle");
+    });
   }
 
   function resetParagrafoDeTitulo() {
@@ -140,6 +151,10 @@ function init() {
     const resultado = identificarClasseDoIP(primeiroOcteto);
     const mascara = calcularMascara(cidr);
     const subRedes = calcularSubRedes(ipv4.bitsIniciais[resultado]);
+
+    displayToggle.forEach((item) => {
+      item.classList.remove("displayToggle");
+    });
 
     if (resultado !== "Fora do Range") {
       paragrafoMascaraDecimal.innerHTML = `<span>Máscara decimal:</span> ${mascara.decimal}`;
