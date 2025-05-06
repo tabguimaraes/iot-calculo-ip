@@ -44,6 +44,14 @@ function init() {
     };
   }
 
+  document.addEventListener("keydown", function (event) {
+    if (event.ctrlKey && event.key.toLowerCase() === "l") {
+      event.preventDefault();
+      limparResultados();
+      paragrafoTitulo.innerHTML = "FAZ O L !!! ";
+    }
+  });
+
   // Event Listeners capturando a mudança do valor a cada mudança do elemento NodeList (array type) ipInput
   ipInput.forEach((element) => {
     element.addEventListener("change", function (evento) {
