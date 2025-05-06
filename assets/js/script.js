@@ -61,15 +61,15 @@ function init() {
   document.addEventListener("keydown", function (event) {
     if (event.ctrlKey && event.key.toLowerCase() === "l") {
       event.preventDefault();
-      limparResultados();
-      paragrafoTitulo.innerHTML = "FAZ O L !!! ";
+      fazOL();
     }
   });
 
   // Event Listeners capturando a mudança do valor a cada mudança do elemento NodeList (array type) ipInput
   ipInput.forEach((element) => {
     element.addEventListener("change", function (evento) {
-      validarInputOctetos();
+      validarInputOctetos(cidr);
+      fazOL();
       resetParagrafoDeTitulo();
       let valor = Number(evento.target.value.trim());
 
@@ -87,6 +87,7 @@ function init() {
     cidr = Number(evento.target.value);
     resetParagrafoDeTitulo();
     calcularCIDR(cidr);
+    validarInputOctetos(cidr);
     exibirResultado();
   });
 
@@ -96,6 +97,11 @@ function init() {
     } else {
       calcularHosts(cidr);
     }
+  }
+
+  function fazOL() {
+    limparResultados();
+    paragrafoTitulo.innerHTML = `<img src="./assets/img/faz-o-L.gif"></img>`;
   }
 
   function identificarClasseDoIP(ip) {
@@ -130,11 +136,16 @@ function init() {
     return (hosts = hosts.toLocaleString("pt-BR"));
   }
 
-  function validarInputOctetos() {
+  function validarInputOctetos(cidr) {
     primeiroOcteto = formCalculadora.primeiroOcteto.valueAsNumber || 0;
     segundoOcteto = formCalculadora.segundoOcteto.valueAsNumber || 0;
     terceiroOcteto = formCalculadora.terceiroOcteto.valueAsNumber || 0;
     quartoOcteto = formCalculadora.quartoOcteto.valueAsNumber || 0;
+
+    if (primeiroOcteto === 13 && segundoOcteto === 13 && terceiroOcteto === 13 && quartoOcteto === 13 && cidr === 13) {
+      fazOL();
+    }
+    console.log(primeiroOcteto, segundoOcteto, terceiroOcteto, quartoOcteto, cidr);
   }
 
   function limparResultados() {
