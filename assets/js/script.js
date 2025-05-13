@@ -50,11 +50,11 @@ function init() {
     },
   };
 
-  btnCalcular.addEventListener("click", function (evento) {
-    evento.preventDefault();
-    fazOL();
-    exibirResultado();
-  });
+  // btnCalcular.addEventListener("click", function (evento) {
+  //   evento.preventDefault();
+  //   fazOL();
+  //   exibirResultado();
+  // });
 
   function calcularMascara(cidr) {
     const binario = "1".repeat(cidr).padEnd(32, "0");
