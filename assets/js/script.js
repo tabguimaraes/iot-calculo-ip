@@ -19,6 +19,7 @@ function init() {
     ultimoIP: document.querySelector(".ultimoIP"),
     ipInput: document.querySelectorAll(".ip-input"),
     displayToggle: document.querySelectorAll(".displayToggle"),
+    btnCalcular: document.querySelector("#btnCalcular"),
   };
   const {
     ipInput,
@@ -32,6 +33,7 @@ function init() {
     primeiroIP,
     ultimoIP,
     displayToggle,
+    btnCalcular,
   } = formCalculadora;
 
   const ipv4 = {
@@ -47,6 +49,12 @@ function init() {
       classeC: 24,
     },
   };
+
+  btnCalcular.addEventListener("click", function (evento) {
+    evento.preventDefault();
+    fazOL();
+    exibirResultado();
+  });
 
   function calcularMascara(cidr) {
     const binario = "1".repeat(cidr).padEnd(32, "0");
