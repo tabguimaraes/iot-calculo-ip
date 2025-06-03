@@ -32,6 +32,12 @@ function init() {
       classeB: 16,
       classeC: 24,
     },
+
+    intervaloRede: {
+      classeA: "",
+      classeB: "",
+      classeC: "",
+    },
   };
 
   function calcularMascara(cidr) {
@@ -97,6 +103,16 @@ function init() {
     } else {
       return (subRedes = subRedes.toLocaleString("pt-BR"));
     }
+  }
+
+  function calcularRedes() {
+    /* 
+    1- Identificar classe do IP. Se O CIDR for o inicial da classe, inserir o valor correspondente de acordo com o modelo criado dentro do objeto ipv4
+    2- Identificar na máscara decimal onde o valor é diferente de 0 ou 255, para saber em qual octeto inserir o valor inicial e final da rede
+    3- Dividir o valor de 256 pela quantidade de subredes, subtraindo (-2) do resultado final e inserir no octeto correspondente (classe C apenas)
+    4- Se classe A ou B, identificar o octeto que foi alterado e criar a faixa inicial em xx.xx.xx.1 e a final e xx.xx.xx.254, com o calculo de salto iniciando em 0 e ir somando o valor do resultado do item 3, até a quantidade total de redes
+
+    */
   }
 
   function calcularHosts(cidr) {
