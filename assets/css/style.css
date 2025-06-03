@@ -174,14 +174,10 @@ p {
 }
 
 #paragrafoFooter {
-  height: 6vh;
   color: #e9ecef;
-  display: flex;
-  align-items: end;
-  padding-bottom: 10px;
+  padding: 10px 0;
 }
 
 #paragrafoFooter p {
   color: #e9ecef;
 }
-
