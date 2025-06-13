@@ -52,7 +52,7 @@ function init() {
 
   btnCalcular.addEventListener("click", function (evento) {
     evento.preventDefault();
-    fazOL();
+    // fazOL();
     exibirResultado();
   });
 
@@ -69,7 +69,7 @@ function init() {
   document.addEventListener("keydown", function (event) {
     if (event.ctrlKey && event.key.toLowerCase() === "l") {
       event.preventDefault();
-      fazOL();
+      // fazOL();
     }
   });
 
@@ -77,7 +77,7 @@ function init() {
   ipInput.forEach((element) => {
     element.addEventListener("change", function (evento) {
       validarInputOctetos(cidr);
-      fazOL();
+      //  fazOL();
       resetParagrafoDeTitulo();
       let valor = Number(evento.target.value.trim());
 
@@ -107,10 +107,10 @@ function init() {
     }
   }
 
-  function fazOL() {
-    limparResultados();
-    paragrafoTitulo.innerHTML = `<img src="./assets/img/faz-o-L.gif"></img>`;
-  }
+  // function fazOL() {
+  //   limparResultados();
+  //   paragrafoTitulo.innerHTML = `<img src="./assets/img/faz-o-L.gif"></img>`;
+  // }
 
   function identificarClasseDoIP(ip) {
     if (ip >= 0 && ip <= 127) {
@@ -151,7 +151,7 @@ function init() {
     quartoOcteto = formCalculadora.quartoOcteto.valueAsNumber || 0;
 
     if (primeiroOcteto === 13 && segundoOcteto === 13 && terceiroOcteto === 13 && quartoOcteto === 13 && cidr === 13) {
-      fazOL();
+      // fazOL();
     }
     console.log(primeiroOcteto, segundoOcteto, terceiroOcteto, quartoOcteto, cidr);
   }
